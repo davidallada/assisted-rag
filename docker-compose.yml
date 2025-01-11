@@ -1,0 +1,18 @@
+services:
+  assisted-rag:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    command: runserver
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  assisted-rag-dev:
+    extends: assisted-rag
+    profiles:
+      - dev
+    command: bash
+    volumes:
+      - ./:/app
