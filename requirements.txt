@@ -2,3 +2,6 @@ ipython
 Django==5.1.4
 djangorestframework
 django-cors-headers
+openai
+requests
+python-dotenv

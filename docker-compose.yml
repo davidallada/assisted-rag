@@ -3,16 +3,38 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
+      tags:
+        - assisted-rag:latest
+    image: assisted-rag:latest
     command: runserver
+    volumes:
+      - /root/.ipython/profile_default/history
+      - .:/app
     environment:
       - PYTHONUNBUFFERED=1
+
+  assisted-rag-prod:
+    extends: assisted-rag
+    ports:
+      - "9009:8000"
 
   assisted-rag-dev:
     extends: assisted-rag
     profiles:
       - dev
     command: bash
-    volumes:
-      - ./:/app
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    ports:
+      - "9011:8000"
+
+  assisted-rag-ipython:
+    extends: assisted-rag
+    profiles:
+      - ipython
+    command: ipython
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    ports:
+      - "9012:8000"
+
