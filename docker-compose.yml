@@ -38,3 +38,18 @@ services:
     ports:
       - "9012:8000"
 
+  neo4j:
+    image: neo4j:2025.01.0-bullseye
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+        - /.data/neo4j/logs:/logs
+        - /.data/neo4j/config:/config
+        - /.data/neo4j/data:/data
+        - /.data/neo4j/plugins:/plugins
+    environment:
+      # - NEO4J_AUTH=neo4j/blahblah  # Just for testing
+      - NEO4J_AUTH=none
+    restart: always
+
