@@ -48,6 +48,13 @@ ENV PATH="/venv/bin:/node/node_modules/.bin:$PATH"
 # Set PYTHONPATH to include the application directory
 ENV PYTHONPATH="/app:$PYTHONPATH"
 
+RUN apt-get update && \
+    apt-get install -y \
+    libmagic-dev \
+    poppler-utils \
+    tesseract-ocr \
+    libreoffice \
+    pandoc
 # Set the working directory
 WORKDIR /app
 

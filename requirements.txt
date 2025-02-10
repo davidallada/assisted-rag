@@ -5,3 +5,7 @@ django-cors-headers
 openai
 requests
 python-dotenv
+unstructured[all-docs]
+unstructured-ingest
+langchain-openai
+unstructured[openai]
